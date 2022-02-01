@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "c6d051d0-9d7e-4f0f-874c-a1387c6d0809"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,7 +34,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css"
             ],
             "scripts": []
           },
@@ -99,7 +104,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css"
             ],
             "scripts": []
           }

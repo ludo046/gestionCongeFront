@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="modal">
+        <div class="modalHeader">
+            <h1>Connection</h1>
+        </div>
+        <form [formGroup]="loginForm">
+            <div class="input">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Identifiant</mat-label>
+                    <input type="email" matInput placeholder="Ex. maxime.e" required class="form-control" formControlName="identifiant">
+                  </mat-form-field>
+            </div>
+            <div class="input">
+                <mat-form-field appearance="fill">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" required class="form-control" formControlName="motDePasse">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" class="visibility"  >
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+            </div>
+            <p>{{msg}}</p>
+        </form>
+        <div class="modalFooter">
+            <button mat-raised-button color="primary" (click)="login()">Se connecter</button>
+        </div>
+        <fa-icon class="truc" [icon]="powerOff"></fa-icon>
+    </div>
+</div>

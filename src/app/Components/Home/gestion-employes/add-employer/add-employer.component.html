@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="modal">
+        <div class="modalHeader">
+            <h1>Ajouter un employé</h1>
+        </div>
+        <form [formGroup]="addEmployeForm">
+            <div class="input flex">
+                <mat-form-field class="date" appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input matInput placeholder="Ex. durant" class="form-control" formControlName="nom" required>
+                  </mat-form-field>
+
+                  <mat-form-field class="date" appearance="fill">
+                    <mat-label>Prénom</mat-label>
+                    <input matInput placeholder="Ex. paul" class="form-control" formControlName="prenom" required>
+                  </mat-form-field>
+            </div>
+  
+            <div class="input">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Identifiant</mat-label>
+                    <input matInput placeholder="Ex. paul.d" class="form-control" formControlName="identifiant" required>
+                  </mat-form-field>
+            </div>
+  
+            <div class="input">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Mot de passe </mat-label>
+                    <input matInput class="form-control" formControlName="motDePasse" required>
+                  </mat-form-field>
+            </div>
+            <div class="input">
+                <mat-form-field appearance="fill">
+                    <mat-label>Manager</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let employe of employes" [value]="employe">
+                          {{employe.nom}} {{employe.prenom}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+        </form>
+        <div class="modalFooter">
+            <button mat-raised-button color="primary" (click)="addEmploye()">Envoyer</button>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="modal">
+        <div class="modalHeader">
+            <h1>Modifier un congé</h1>
+        </div>
+        <form form>
+            <div class="input flex">
+              <mat-form-field appearance="fill" class="date">
+                <mat-label>Date de debut des congés</mat-label>
+                <input matInput [matDatepicker]="datepicker" required>
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Retour</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Ok</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+              
+              <mat-form-field appearance="fill" class="date">
+                <mat-label>Date de fin des congés</mat-label>
+                <mat-date-range-input [rangePicker]="rangePicker"required>
+                  <input matStartDate placeholder="Start date">
+                  <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker>
+                  <mat-date-range-picker-actions>
+                    <button mat-button matDateRangePickerCancel>Retour</button>
+                    <button mat-raised-button color="primary" matDateRangePickerApply>Ok</button>
+                  </mat-date-range-picker-actions>
+                </mat-date-range-picker>
+              </mat-form-field>
+            </div>
+  
+            <div class="input">
+              <mat-form-field appearance="fill">
+                <mat-label>Type de congés</mat-label>
+                <mat-select required>
+                  <mat-option 
+                 [value]="">
+                    ccccc
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+  
+            <div class="input">
+              <mat-form-field appearance="fill">
+                <mat-label>Motif de la demande de congés</mat-label>
+                <textarea matInput></textarea>
+              </mat-form-field>
+            </div>
+        </form>
+        <div class="modalFooter">
+            <button mat-raised-button color="primary" >Envoyer</button>
+        </div>
+    </div>
+  </div>

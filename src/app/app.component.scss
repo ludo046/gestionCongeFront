@@ -1,0 +1,13 @@
+mat-toolbar{
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px -9px 10px 1px #4f5050 inset;
+    .align{
+        .title{
+            margin-left: 10px;
+        }
+        mat-icon{
+            vertical-align: text-bottom;
+        }
+    }
+}

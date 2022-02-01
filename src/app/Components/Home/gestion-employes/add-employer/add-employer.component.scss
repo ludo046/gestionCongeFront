@@ -1,0 +1,92 @@
+$primary-color : #303030;
+$secondary-color : #1D1D1D;
+$terciary-color : #317474;
+$font-color : white;
+
+.container{
+    .modal{
+        width: 80%;
+        background-color: $primary-color;
+        margin: 5% auto 0;
+        border-radius: 10px;
+        position: relative;
+        border: 1px solid grey;
+        border-top: none;
+        border-left: none;
+        box-shadow: 5px 5px 10px 1px #000;
+        .modalHeader{
+            background-color: $secondary-color;
+            text-align: center;
+            color: $font-color;
+            border-radius: 10px 10px 0 0;
+            h1{
+                margin: 0;
+                padding: 15px 0;
+            }
+        }
+        form{
+            width: 70%;
+            margin : 0 auto;
+            padding: 40px 0;
+            .input{
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                margin: 0 auto;
+                color: $font-color;
+            }
+            .input:nth-child(1){
+                margin-bottom: 20px;
+            }
+            .flex{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                .date{
+                    width: 40%;
+                }
+            }
+            .visibility{
+                background-color: transparent;
+                border: none;
+                color: $font-color;
+            }
+            input{
+                height: 30px;
+            }
+            ::ng-deep.mat-form-field-ripple {
+                background-color: $terciary-color !important;
+               }
+            ::ng-deep .mat-focused .mat-form-field-label {
+                color: $terciary-color !important;
+            }
+
+
+
+        }
+        .modalFooter{
+            background-color: $secondary-color;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            border-radius:0 0 10px 10px;
+            button{
+                padding: 10px;
+                border-radius: 10px;
+                background-color: $terciary-color;
+                color: $font-color;
+            }
+        }
+        fa-icon{ 
+            font-size: 15rem;
+            position: absolute;
+            top: -220px;
+            right: 80px;
+            color: #1D1D1D;
+            opacity: 0.5;
+            z-index: -1;
+            animation: myAnim 2s ease 0s infinite normal forwards;
+        }
+    }
+
+}
