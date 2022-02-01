@@ -1,4 +1,4 @@
 export interface loginInterface{
-    identifiant : string;
-    motDePasse : string;
+    username : string;
+    password : string;
 }

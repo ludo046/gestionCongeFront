@@ -31,12 +31,13 @@ export class LoginComponent implements OnInit {
 
   login(){
     const login = {
-      identifiant : this.loginForm.get("identifiant").value,
-      motDePasse : this.loginForm.get("motDePasse").value
+      username : this.loginForm.get("identifiant").value,
+      password : this.loginForm.get("motDePasse").value
     }
 
     this.authService.login(login).subscribe(
       result => {
+        console.log(result);
         this.msg = "vous allez etre redirigé vers la page d'acceuil "
         setTimeout(() => {
            this.msg = ""
