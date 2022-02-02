@@ -8,8 +8,8 @@ import { AuthService } from 'src/app/Services/Auth/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public user = JSON.parse(sessionStorage.getItem('user'));
-  public role = JSON.parse(sessionStorage.getItem('user')).roles[0].authority;
+  public user 
+  public role 
   public calendar = faCalendarAlt;
 
   constructor(private authService : AuthService) { }
@@ -19,12 +19,10 @@ export class HomeComponent implements OnInit {
       result => {
         console.log(result);
         sessionStorage.setItem('user', JSON.stringify(result))
+        this.user = JSON.parse(sessionStorage.getItem('user'))
+        this.role = JSON.parse(sessionStorage.getItem('user')).roles[0].authority;
       }
     )
-
-    console.log(this.role);
-    
-
   }
 
 }

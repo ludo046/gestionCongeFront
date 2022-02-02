@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(login).subscribe(
       result => {
-        console.log(result);
-        sessionStorage.setItem('user', JSON.stringify(result))
+        //console.log(result);
+        //sessionStorage.setItem('user', JSON.stringify(result))
         this.msg = "vous allez etre redirigé vers la page d'acceuil "
         setTimeout(() => {
            this.msg = ""
