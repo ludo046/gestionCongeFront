@@ -7,8 +7,8 @@
           <div class="input flex">
             <mat-form-field appearance="fill" class="date">
               <mat-label>Date de debut des congés</mat-label>
-              <input matInput [matDatepicker]="datepicker" required class="form-control" formControlName="dateDebut">
-              <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <input matInput [matDatepicker]="datepicker " required class="form-control" formControlName="dateDebut">
+              <mat-datepicker-toggle matSuffix [for]="datepicker "></mat-datepicker-toggle>
               <mat-datepicker #datepicker>
                 <mat-datepicker-actions>
                   <button mat-button matDatepickerCancel>Retour</button>
@@ -16,20 +16,13 @@
                 </mat-datepicker-actions>
               </mat-datepicker>
             </mat-form-field>
-            
-            <mat-form-field appearance="fill" class="date">
+            <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Date de fin des congés</mat-label>
-              <mat-date-range-input [rangePicker]="rangePicker" required class="form-control" formControlName="dateFin">
-                <input matStartDate placeholder="Start date" >
-                <input matEndDate placeholder="End date" >
-              </mat-date-range-input>
-              <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
-              <mat-date-range-picker #rangePicker>
-                <mat-date-range-picker-actions>
-                  <button mat-button matDateRangePickerCancel>Retour</button>
-                  <button mat-raised-button color="primary" matDateRangePickerApply>Ok</button>
-                </mat-date-range-picker-actions>
-              </mat-date-range-picker>
+              <input matInput [matDatepicker]="picker" class="form-control" formControlName="dateFin">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
 
@@ -38,13 +31,12 @@
               <mat-label>Type de congés</mat-label>
               <mat-select required class="form-control" formControlName="type">
                 <mat-option 
-               value="rtt">
+               value="RTT_SALARIE">
                   ccccc
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-
           <div class="input">
             <mat-form-field appearance="fill">
               <mat-label>Motif de la demande de congés</mat-label>

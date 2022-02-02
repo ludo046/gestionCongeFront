@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { loginInterface } from 'src/app/Models/login';
 import { environment } from 'src/environments/environment';
 
@@ -8,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private baseUrl = environment.baseUrl;
+  user$ = new Subject<any>();
 
   constructor(private httpClient : HttpClient) { }
 
@@ -19,7 +21,13 @@ export class AuthService {
       })
     };
 
-    return this.httpClient.post('http://localhost:8090/login', 
+    return this.httpClient.post('http://localhost:8080/login', 
         new HttpParams().set('username', loginInterface.username).set('password', loginInterface.password), config)
   }
+
+  getUser(){
+    return this.httpClient.get('http://localhost:8080/user')
+  }
+
+ 
 }

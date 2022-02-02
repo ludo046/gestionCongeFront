@@ -13,7 +13,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
-import { NativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, NativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -27,7 +27,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { ModifyCongesComponent } from './Components/Home/modify-conges/modify-conges.component';
 import { GestionEmployesComponent } from './Components/Home/gestion-employes/gestion-employes.component';
 import { AddEmployerComponent } from './Components/Home/gestion-employes/add-employer/add-employer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModifyEmployerComponent } from './Components/Home/gestion-employes/modify-employer/modify-employer.component';
 import { DeleteEmployerComponent } from './Components/Home/gestion-employes/delete-employer/delete-employer.component';
@@ -74,10 +74,12 @@ FullCalendarModule.registerPlugins([
     MatCardModule,
     NativeDateModule,
     MatNativeDateModule,
+    FormsModule,
     ReactiveFormsModule,
     
+    
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, HttpClient],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, HttpClient, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

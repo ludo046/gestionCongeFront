@@ -1,3 +1,8 @@
+<body>
+  <div class="user">
+  <p>Bienvenue {{user.nom}} {{user.prenom}}</p>
+  <p>connecter en tant que <span class="lowercase">{{user.roles[0].authority}}</span></p>
+</div>
 <main class="site-wrapper">
   <div class="pt-table desktop-768">
     <div class="pt-tablecell page-home relative">
@@ -90,7 +95,7 @@
               </svg>
             </a>
           </div>
-          <div class="hexagon-item" [routerLink]="['/planningconges']" routerLinkActive="router-link-active" >
+          <div class="hexagon-item" [routerLink]="['/planningconges']" routerLinkActive="router-link-active" *ngIf="role === 'ADMINISTRATEUR'">
             <div class="hex-item">
               <div></div>
               <div></div>
@@ -122,7 +127,7 @@
               </svg>
             </a>
           </div>
-          <div class="hexagon-item">
+          <div class="hexagon-item" *ngIf="role === 'ADMINISTRATEUR'">
             <div class="hex-item">
               <div></div>
               <div></div>
@@ -154,7 +159,7 @@
               </svg>
             </a>
           </div>
-          <div class="hexagon-item" [routerLink]="['/gestionemployes']" routerLinkActive="router-link-active" >
+          <div class="hexagon-item" [routerLink]="['/gestionemployes']" routerLinkActive="router-link-active" *ngIf="role === 'ADMINISTRATEUR'">
             <div class="hex-item">
               <div></div>
               <div></div>
@@ -186,7 +191,7 @@
               </svg>
             </a>
           </div>
-          <div class="hexagon-item">
+          <div class="hexagon-item" *ngIf="role === 'ADMINISTRATEUR'">
             <div class="hex-item">
               <div></div>
               <div></div>
@@ -223,3 +228,7 @@
     </div>
   </div>
 </main>
+<fa-icon class="icon" [icon]="calendar"></fa-icon>
+</body>
+
+

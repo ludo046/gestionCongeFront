@@ -1,7 +1,15 @@
 export interface addCongesInterface{
-    idCollaborateur : number;
+    collaborateur : {
+        id : number;
+    }
     dateDebut : string;
     dateFin : string;
-    type : string;
-    motif : string;
+    typeAbsence : string;
+    motifAbsence : string;
+}
+export interface modifyCongesInterface{
+    dateDebut : string;
+    dateFin : string;
+    typeAbsence : string;
+    motifAbsence : string;
 }

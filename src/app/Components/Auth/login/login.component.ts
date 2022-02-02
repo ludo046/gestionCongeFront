@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
               private router : Router) { }
 
   ngOnInit(): void {
+
     this.loginForm = this.formBuilder.group({
       identifiant : this.formBuilder.control("", Validators.required),
       motDePasse : this.formBuilder.control("", Validators.required) 
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(login).subscribe(
       result => {
         console.log(result);
+        sessionStorage.setItem('user', JSON.stringify(result))
         this.msg = "vous allez etre redirigé vers la page d'acceuil "
         setTimeout(() => {
            this.msg = ""
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
         this.msg = error.message
         setTimeout(() => {
           this.msg = ""
-       }, 300000);
+       }, 2000);
       }
     )
   }

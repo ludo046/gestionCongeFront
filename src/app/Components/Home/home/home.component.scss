@@ -2,20 +2,51 @@ $primary-color: rgb(48, 48, 48);
 $secondary-color: #1d1d1d;
 $terciary-color: #317474;
 $font-color: white;
+body{
+  position: relative;
+  overflow: hidden;
+  height: calc(100% - 60px);
+  z-index: 1;
+}
+.icon{
+  position: absolute;
+  right: 100px;
+  top: 100px;
+  transform: rotate(30deg);
+  z-index: -1;
+  font-size: 60rem;
+  opacity: 0.2;
+  filter: drop-shadow(10px 10px 15px black);
+}
+.user{
+  display: flex;
+  justify-content: space-around;
+  background-color: darken($color: $terciary-color, $amount: 5%);
+  height: 50px;
+  color: $font-color;
+  box-shadow: 0px -9px 10px 1px #363636 inset;
+  p{
+    margin: auto;
+  }
+}
 .site-wrapper {
   height: 200px;
   margin-top: 10%;
   width: 90%;
   margin: 10% auto;
+  z-index: 2;
+
 }
 .col-xs-12 {
   width: 80%;
   margin: 0 auto;
+
 }
 
 .container {
   display: flex;
   justify-content: center;
+
 
   .hexagon-item:first-child {
     margin-left: 0;

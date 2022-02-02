@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/Services/Auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public user = JSON.parse(sessionStorage.getItem('user'));
+  public role = JSON.parse(sessionStorage.getItem('user')).roles[0].authority;
+  public calendar = faCalendarAlt;
 
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
+    this.authService.getUser().subscribe(
+      result => {
+        console.log(result);
+        sessionStorage.setItem('user', JSON.stringify(result))
+      }
+    )
+
+    console.log(this.role);
+    
+
   }
 
 }

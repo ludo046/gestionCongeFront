@@ -3,11 +3,20 @@
         <div class="modalHeader">
             <h1>Modifier un congé</h1>
         </div>
-        <form form>
+        <form [formGroup]="modifyCongeForm">
+          <mat-form-field appearance="fill" class="input" >
+            <mat-label  >Congé à modifier</mat-label>
+            <mat-select required class="form-control" formControlName="id">
+              <mat-option  *ngFor="let conge of conges" [value]="conge.id" (click)="getSingleConge()">
+                {{conge.dateDebut}} - {{conge.dateFin}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="singleConge">
             <div class="input flex">
               <mat-form-field appearance="fill" class="date">
                 <mat-label>Date de debut des congés</mat-label>
-                <input matInput [matDatepicker]="datepicker" required>
+                <input matInput [matDatepicker]="datepicker" required class="form-control" formControlName="dateDebut">
                 <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
                   <mat-datepicker-actions>
@@ -17,30 +26,21 @@
                 </mat-datepicker>
               </mat-form-field>
               
-              <mat-form-field appearance="fill" class="date">
+              <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Date de fin des congés</mat-label>
-                <mat-date-range-input [rangePicker]="rangePicker"required>
-                  <input matStartDate placeholder="Start date">
-                  <input matEndDate placeholder="End date">
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
-                <mat-date-range-picker #rangePicker>
-                  <mat-date-range-picker-actions>
-                    <button mat-button matDateRangePickerCancel>Retour</button>
-                    <button mat-raised-button color="primary" matDateRangePickerApply>Ok</button>
-                  </mat-date-range-picker-actions>
-                </mat-date-range-picker>
+                <input matInput [matDatepicker]="picker" class="form-control" formControlName="dateFin">
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
   
             <div class="input">
               <mat-form-field appearance="fill">
                 <mat-label>Type de congés</mat-label>
-                <mat-select required>
-                  <mat-option 
-                 [value]="">
-                    ccccc
-                  </mat-option>
+                <mat-select required class="form-control" formControlName="typeAbsence">
+                  <mat-option value="RTT_SALARIE">rtt</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -48,12 +48,13 @@
             <div class="input">
               <mat-form-field appearance="fill">
                 <mat-label>Motif de la demande de congés</mat-label>
-                <textarea matInput></textarea>
+                <textarea matInput class="form-control" formControlName="motifAbsence"></textarea>
               </mat-form-field>
             </div>
+          </div>
         </form>
         <div class="modalFooter">
-            <button mat-raised-button color="primary" >Envoyer</button>
+            <button mat-raised-button color="primary" (click)="modifyConge()">Envoyer</button>
         </div>
     </div>
   </div>
