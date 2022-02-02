@@ -24,6 +24,7 @@ export class AddCongesComponent implements OnInit {
       type : this.formBuilder.control("", Validators.required),
       motif : this.formBuilder.control("")
     })
+    
   }
 
   addConges(){

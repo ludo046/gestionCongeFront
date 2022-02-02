@@ -1,9 +1,46 @@
+$primary-color : #303030;
+$secondary-color : #1D1D1D;
+$terciary-color : #317474;
+$font-color : white;
+
 .container{
     padding-top: 2%;
-
-    full-calendar{
-        width: 80%;
-        height: 80vh;
+    .modal{
+        width: 60%;
         margin: 0 auto;
+        border: 1px solid grey;
+        border-top: none;
+        border-left: none;
+        box-shadow: 5px 5px 10px 1px #000;
+        border-radius: 10px;
+        .headerModal{
+            background-color: $secondary-color;
+            text-align: center;
+            color: $font-color;
+            border-radius: 10px 10px 0 0;
+            h1{
+                margin: 0;
+                padding: 20px;
+            }
+        }
+        .bodyModal{
+            background-color: $primary-color;
+            padding: 10px;
+            color: $font-color;
+            full-calendar{
+                width: 60%;
+                height: 60vh;
+                margin: 0 auto;
+            }
+  
+        }
+        .footerModal{
+            height: 50px;
+            background-color: $secondary-color;
+            width: 100%;
+            border-radius: 0 0 10px 10px;
+        }
     }
-}
+
+
+}         
