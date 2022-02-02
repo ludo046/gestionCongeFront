@@ -19,7 +19,7 @@ export class CongesPrisComponent implements OnInit {
   public Events =  [];
   calendarOptions: CalendarOptions;
   userId = JSON.parse(sessionStorage.getItem('user')).id
-
+  color ;
   constructor(private congesService : CongesService) { }
 
   ngOnInit(): void {
@@ -27,10 +27,21 @@ export class CongesPrisComponent implements OnInit {
       (conges) => {
         for(let i = 0; i < conges.length; i++){
           if(conges[i].collaborateur.id === this.userId){
+            if(conges[i].statut === 'INITIALE'){
+              this.color = "#0035B9"
+            }else if(conges[i].statut === 'ATTENTE_VALIDATION'){
+              this.color = "#B97300"
+            } else if(conges[i].statut === 'VALIDEE'){
+              this.color = "#2099D6"
+            } else {
+              this.color = "#B97300"
+            }
             const even = {
               title : conges[i].motifAbsence,
               start : conges[i].dateDebut,
-              end : conges[i].dateFin
+              end : conges[i].dateFin,  
+              backgroundColor: this.color,
+              borderColor : this.color
             }
             this.Events.push(even)
           }
@@ -51,6 +62,7 @@ export class CongesPrisComponent implements OnInit {
       }
     )
     this.congesService.getConges();
+    
     
   }
 
