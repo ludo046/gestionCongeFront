@@ -1,0 +1,88 @@
+$primary-color : #303030;
+$secondary-color : #1D1D1D;
+$terciary-color : #317474;
+$font-color : white;
+
+.container{
+    padding-top: 2%;
+    .modal{
+        width: 60%;
+        margin: 0 auto;
+        border: 1px solid grey;
+        border-top: none;
+        border-left: none;
+        box-shadow: 5px 5px 10px 1px #000;
+        border-radius: 10px;
+        .headerModal{
+            background-color: $secondary-color;
+            text-align: center;
+            color: $font-color;
+            border-radius: 10px 10px 0 0;
+            h1{
+                margin: 0;
+                padding: 20px;
+            }
+        }
+        .bodyModal{
+            background-color: $primary-color;
+            padding: 10px;
+            color: $font-color;
+
+           table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: #c15151;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+        }
+        .footerModal{
+            height: 50px;
+            background-color: $secondary-color;
+            width: 100%;
+            border-radius: 0 0 10px 10px;
+        }
+    }
+
+
+}         

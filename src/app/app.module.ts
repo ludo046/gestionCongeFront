@@ -20,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
 
 import { FullCalendarModule } from '@fullcalendar/angular'; 
 import interactionPlugin from '@fullcalendar/interaction';
@@ -34,6 +35,7 @@ import { DeleteEmployerComponent } from './Components/Home/gestion-employes/dele
 import { CongesPrisComponent } from './Components/Home/conges-pris/conges-pris.component';
 import { PlanningCongesComponent } from './Components/Home/planning-conges/planning-conges.component';
 import { AuthInterceptor } from './auth-interceptor';
+import { ListEmployerComponent } from './Components/Home/gestion-employes/list-employer/list-employer.component';
 
 
 
@@ -55,7 +57,8 @@ FullCalendarModule.registerPlugins([
     ModifyEmployerComponent,
     DeleteEmployerComponent,
     CongesPrisComponent,
-    PlanningCongesComponent
+    PlanningCongesComponent,
+    ListEmployerComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +79,7 @@ FullCalendarModule.registerPlugins([
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule
     
     
   ],
