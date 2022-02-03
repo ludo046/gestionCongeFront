@@ -1,1 +1,45 @@
-<p>modify-jour works!</p>
+<div class="container">
+    <div class="modal">
+        <div class="modalHeader">
+            <h1>Modifier un jour férié</h1>
+        </div>
+        <form [formGroup]="modifyjour">
+          <mat-form-field appearance="fill" class="input" >
+            <mat-label  >Jour férié à modifier</mat-label>
+            <mat-select required class="form-control" formControlName="id">
+              <mat-option  *ngFor="let jour of jours" [value]="jour.id">
+                {{jour.libelle}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+            <div class="input flex">
+              <mat-form-field appearance="fill" class="date">
+                <mat-label>Debut jour férié</mat-label>
+                <input matInput [matDatepicker]="datepicker " required class="form-control" formControlName="dateDebut">
+                <mat-datepicker-toggle matSuffix [for]="datepicker "></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Retour</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Ok</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Fin du jour férié</mat-label>
+                <input matInput [matDatepicker]="picker" class="form-control" formControlName="dateFin">
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Libellé</mat-label>
+                <input matInput placeholder="Ex. paques" class="form-control" formControlName="libelle" >
+              </mat-form-field>
+        </form>
+        <div class="modalFooter">
+            <button mat-raised-button color="primary" (click)="updateJour()">Envoyer</button>
+        </div>
+    </div>
+  </div>

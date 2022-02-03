@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { jourInterface } from 'src/app/Models/jour';
+import { Subject } from 'rxjs';
+import { jourInterface, updateJourInterface } from 'src/app/Models/jour';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,10 +10,28 @@ import { environment } from 'src/environments/environment';
 export class FerieService {
 
   private baseUrl = environment.baseUrl;
+  allJours$ = new Subject<any>();
 
   constructor(private httpClient : HttpClient) { }
 
   addJour(jourInterface : jourInterface){
     return this.httpClient.post(`${this.baseUrl}jour_ferie`, jourInterface)
   }
+
+
+  updateJour(updateJourInterface : updateJourInterface){
+    return this.httpClient.put(`${this.baseUrl}jour_ferie/` + updateJourInterface.id, updateJourInterface)
+  }
+
+  getJours(){
+    return this.httpClient.get(`${this.baseUrl}jour_ferie/all`).subscribe(
+      (jours) => {
+        this.allJours$.next(jours);
+      },
+      (error) => {
+        this.allJours$.next([]);
+      }
+    )
+  }
+
 }

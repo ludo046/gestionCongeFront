@@ -3,3 +3,10 @@ export interface jourInterface{
     dateFin : string;
     libelle : string;
 }
+
+export interface updateJourInterface{
+    id : number;
+    dateDebut : string;
+    dateFin : string;
+    libelle : string;
+}
