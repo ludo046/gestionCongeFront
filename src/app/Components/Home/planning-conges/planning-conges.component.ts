@@ -4,6 +4,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import { Subscription } from 'rxjs';
 import { addCongesInterface } from 'src/app/Models/conges';
 import { CongesService } from 'src/app/Services/Conges/conges.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-planning-conges',
@@ -18,6 +19,7 @@ export class PlanningCongesComponent implements OnInit {
   public Events =  [];
   calendarOptions: CalendarOptions;
   color ;
+  fileName= 'ExcelSheet.xlsx'; 
 
 
   constructor(private congesService : CongesService) { }
@@ -62,6 +64,21 @@ export class PlanningCongesComponent implements OnInit {
       }
     )
     this.congesService.getConges();
+    
+  }
+
+  exportexcel(): void 
+  {
+     /* table id is passed over here */   
+     let element = document.getElementById('calendar'); 
+     const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+     /* generate workbook and add the worksheet */
+     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+     /* save to file */
+     XLSX.writeFile(wb, this.fileName);
     
   }
 

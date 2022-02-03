@@ -35,10 +35,20 @@ $font-color : white;
   
         }
         .footerModal{
-            height: 50px;
             background-color: $secondary-color;
             width: 100%;
             border-radius: 0 0 10px 10px;
+            display: flex;
+            justify-content: center;
+            color: $font-color;
+            a{
+                padding: 25px;
+                display: flex;
+                vertical-align: middle;
+            }
+            mat-icon{
+                padding-left: 10px;
+            }
         }
     }
 
