@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { Subscription } from 'rxjs';
-import { addCongesInterface } from 'src/app/Models/conges';
+import { jourInterface} from 'src/app/Models/jour';
 import { CongesService } from 'src/app/Services/Conges/conges.service';
+import { FerieService } from 'src/app/Services/Ferie/ferie.service';
 import * as XLSX from 'xlsx'; 
 
 @Component({
@@ -23,13 +24,40 @@ export class CongesPrisComponent implements OnInit {
   color ;
   fileName= 'ExcelSheet.xlsx';  
   public userSub
+  public jourSub: Subscription;
+  public jours: jourInterface[];
 
-  constructor(private congesService : CongesService) { }
+  constructor(private congesService : CongesService,
+              private ferieService : FerieService) { }
 
   ngOnInit(): void {
+    this.jourSub = this.ferieService.allJours$.subscribe(
+      (jours) => {
+        this.jours = jours;
+        console.log(jours);
+        for(let i = 0; i < jours.length; i++){
+
+            const even = {
+              title : jours[i].libelle,
+              start : jours[i].dateDebut,
+              end : jours[i].dateFin,  
+              backgroundColor: "#B6A800",
+              borderColor : "#B6A800"
+            }
+            this.Events.push(even)         
+        }
+      },
+      error => {
+        this.msg = error;
+      }
+    )
+    this.ferieService.getJours(); 
+
     this.congesSub = this.congesService.allConges$.subscribe(
-      (conges) => {
+      (conges) => { 
+        console.log(conges);
         
+
         for(let i = 0; i < conges.length; i++){
           if(conges[i].collaborateur.id === this.userId){
             if(conges[i].statut === 'INITIALE'){
@@ -52,8 +80,6 @@ export class CongesPrisComponent implements OnInit {
             this.Events.push(even)
 
           }
-          console.log(this.conges); 
-          
         }
           this.calendarOptions = {
             initialView: 'dayGridMonth',
@@ -65,13 +91,14 @@ export class CongesPrisComponent implements OnInit {
             },
             events: this.Events
           };
+          console.log(this.Events);
+          
       },
       error => {
         this.msg = error;
       }
     )
-    this.congesService.getConges();
-       
+    this.congesService.getConges();   
   }
 
 

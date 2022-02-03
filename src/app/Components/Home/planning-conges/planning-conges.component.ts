@@ -3,7 +3,9 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { Subscription } from 'rxjs';
 import { addCongesInterface } from 'src/app/Models/conges';
+import { jourInterface } from 'src/app/Models/jour';
 import { CongesService } from 'src/app/Services/Conges/conges.service';
+import { FerieService } from 'src/app/Services/Ferie/ferie.service';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -19,12 +21,37 @@ export class PlanningCongesComponent implements OnInit {
   public Events =  [];
   calendarOptions: CalendarOptions;
   color ;
-  fileName= 'ExcelSheet.xlsx'; 
+  fileName= 'ExcelSheet.xlsx';
+  public jourSub: Subscription;
+  public jours: jourInterface[]; 
 
 
-  constructor(private congesService : CongesService) { }
+  constructor(private congesService : CongesService,
+              private ferieService : FerieService) { }
 
   ngOnInit(): void {
+    this.jourSub = this.ferieService.allJours$.subscribe(
+      (jours) => {
+        this.jours = jours;
+        console.log(jours);
+        for(let i = 0; i < jours.length; i++){
+
+            const even = {
+              title : jours[i].libelle,
+              start : jours[i].dateDebut,
+              end : jours[i].dateFin,  
+              backgroundColor: "#B6A800",
+              borderColor : "#B6A800"
+            }
+            this.Events.push(even)         
+        }
+      },
+      error => {
+        this.msg = error;
+      }
+    )
+    this.ferieService.getJours(); 
+
     this.congesSub = this.congesService.allConges$.subscribe(
       (conges) => {
         for(let i = 0; i < conges.length; i++){
