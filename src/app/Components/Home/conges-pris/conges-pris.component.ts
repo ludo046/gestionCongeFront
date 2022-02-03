@@ -15,19 +15,21 @@ export class CongesPrisComponent implements OnInit {
 
 
   public congesSub: Subscription;
-  public conges: addCongesInterface[];
+  public conges: any;
   public msg: string;
   public Events =  [];
   calendarOptions: CalendarOptions;
   userId = JSON.parse(sessionStorage.getItem('user')).id
   color ;
   fileName= 'ExcelSheet.xlsx';  
+  public userSub
 
   constructor(private congesService : CongesService) { }
 
   ngOnInit(): void {
     this.congesSub = this.congesService.allConges$.subscribe(
       (conges) => {
+        
         for(let i = 0; i < conges.length; i++){
           if(conges[i].collaborateur.id === this.userId){
             if(conges[i].statut === 'INITIALE'){
@@ -39,6 +41,7 @@ export class CongesPrisComponent implements OnInit {
             } else {
               this.color = "#B97300"
             }
+            this.conges = conges[i]
             const even = {
               title : conges[i].motifAbsence,
               start : conges[i].dateDebut,
@@ -47,7 +50,10 @@ export class CongesPrisComponent implements OnInit {
               borderColor : this.color
             }
             this.Events.push(even)
+
           }
+          console.log(this.conges); 
+          
         }
           this.calendarOptions = {
             initialView: 'dayGridMonth',
@@ -65,8 +71,7 @@ export class CongesPrisComponent implements OnInit {
       }
     )
     this.congesService.getConges();
-    
-    
+       
   }
 
 

@@ -36,4 +36,8 @@ export class CongesService {
   modifyConge(id : number ,addCongesInterface : modifyCongesInterface){
     return this.httpClient.put(`${this.baseUrl}demande_absence/` + id, addCongesInterface)
   }
+
+  deleteConge(id: number){
+    return this.httpClient.delete(`${this.baseUrl}demande_absence/`+id)
+  }
 }

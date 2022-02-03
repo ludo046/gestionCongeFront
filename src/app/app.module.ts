@@ -36,6 +36,13 @@ import { CongesPrisComponent } from './Components/Home/conges-pris/conges-pris.c
 import { PlanningCongesComponent } from './Components/Home/planning-conges/planning-conges.component';
 import { AuthInterceptor } from './auth-interceptor';
 import { ListEmployerComponent } from './Components/Home/gestion-employes/list-employer/list-employer.component';
+import { GestionCongeComponent } from './Components/Home/gestion-conge/gestion-conge/gestion-conge.component';
+import { ShowCongeComponent } from './Components/Home/show-conge/show-conge/show-conge.component';
+import { DeleteCongeComponent } from './Components/Home/gestion-conge/delete-conge/delete-conge.component';
+import { GestionJourferieComponent } from './Components/Home/gestion-jourferie/gestion-jourferie.component';
+import { AddJourComponent } from './Components/Home/gestion-jourferie/add-jour/add-jour.component';
+import { ModifyJourComponent } from './Components/Home/gestion-jourferie/modify-jour/modify-jour.component';
+import { DeleteJourComponent } from './Components/Home/gestion-jourferie/delete-jour/delete-jour.component';
 
 
 
@@ -58,7 +65,14 @@ FullCalendarModule.registerPlugins([
     DeleteEmployerComponent,
     CongesPrisComponent,
     PlanningCongesComponent,
-    ListEmployerComponent
+    ListEmployerComponent,
+    GestionCongeComponent,
+    ShowCongeComponent,
+    DeleteCongeComponent,
+    GestionJourferieComponent,
+    AddJourComponent,
+    ModifyJourComponent,
+    DeleteJourComponent
   ],
   imports: [
     BrowserModule,

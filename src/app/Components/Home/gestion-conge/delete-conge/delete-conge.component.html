@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="modal">
+        <div class="modalHeader">
+            <h1>Supprimer un employé </h1>
+        </div>
+        <form [formGroup]="deleteCongeForm">
+            <div class="input">
+                <mat-form-field appearance="fill">
+                    <mat-label>Conge à supprimer</mat-label>
+                    <mat-select class="form-control" formControlName="id" required>
+                      <mat-option *ngFor="let conge of conges" [value]="conge.id" >
+                          {{conge.dateDebut}} {{conge.dateFin}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+        </form>
+        <div class="modalFooter">
+            <p *ngIf="msg">{{msg}}</p>
+            <button mat-raised-button color="primary" (click)="deleteConge()">Envoyer</button>
+        </div>
+    </div>
+  </div>

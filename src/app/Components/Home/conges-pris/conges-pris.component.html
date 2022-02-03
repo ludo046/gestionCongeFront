@@ -7,9 +7,16 @@
             <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
         </div>
         <div class="footerModal">
-           <a style="cursor: pointer" (click)="exportexcel()">
-                export exel<mat-icon> cloud_download</mat-icon>
-            </a>
+            <div>
+                <p>congesAquis : {{conges.collaborateur.congesAquis}}</p>
+                <p>congesPosés : {{conges.collaborateur.congesPoses}}</p>
+            </div>
+            <div>
+                <a style="cursor: pointer" (click)="exportexcel()">
+                    export exel<mat-icon> cloud_download</mat-icon>
+                </a>
+            </div>
+
         </div>
     </div>  
 </div> 
