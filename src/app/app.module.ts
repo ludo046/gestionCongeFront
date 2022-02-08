@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import { GestionJourferieComponent } from './Components/Home/gestion-jourferie/g
 import { AddJourComponent } from './Components/Home/gestion-jourferie/add-jour/add-jour.component';
 import { ModifyJourComponent } from './Components/Home/gestion-jourferie/modify-jour/modify-jour.component';
 import { DeleteJourComponent } from './Components/Home/gestion-jourferie/delete-jour/delete-jour.component';
+import { ValidCongesComponent } from './Components/Home/valid-conges/valid-conges/valid-conges.component';
 
 
 
@@ -72,7 +74,8 @@ FullCalendarModule.registerPlugins([
     GestionJourferieComponent,
     AddJourComponent,
     ModifyJourComponent,
-    DeleteJourComponent
+    DeleteJourComponent,
+    ValidCongesComponent
   ],
   imports: [
     BrowserModule,
@@ -93,8 +96,8 @@ FullCalendarModule.registerPlugins([
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule
-    
+    MatTableModule,
+    HighchartsChartModule
     
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, HttpClient, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'} ],

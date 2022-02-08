@@ -18,6 +18,7 @@ import { HomeComponent } from './Components/Home/home/home.component';
 import { ModifyCongesComponent } from './Components/Home/modify-conges/modify-conges.component';
 import { PlanningCongesComponent } from './Components/Home/planning-conges/planning-conges.component';
 import { ShowCongeComponent } from './Components/Home/show-conge/show-conge/show-conge.component';
+import { ValidCongesComponent } from './Components/Home/valid-conges/valid-conges/valid-conges.component';
 
 const routes: Routes = [
   {path : 'login',component: LoginComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path : 'addjourferier', component: AddJourComponent},
   {path : 'modifyjourferier', component: ModifyJourComponent},
   {path : 'deletejourferier', component : DeleteJourComponent},
+  {path : 'validconges', component : ValidCongesComponent},
   {path : '', component: LoginComponent},
   {path : '**', redirectTo:'/login'}
 ];

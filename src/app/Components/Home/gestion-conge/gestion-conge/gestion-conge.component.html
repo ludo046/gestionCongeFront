@@ -95,7 +95,7 @@
                 </svg>
                 </a>
             </div>
-            <div class="hexagon-item" *ngIf="role === 'ADMINISTRATEUR'">
+            <div class="hexagon-item" [routerLink]="['/validconges']" routerLinkActive="router-link-active"  *ngIf="role === 'ADMINISTRATEUR'">
                 <div class="hex-item">
                 <div></div>
                 <div></div>

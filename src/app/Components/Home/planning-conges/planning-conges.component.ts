@@ -7,6 +7,7 @@ import { jourInterface } from 'src/app/Models/jour';
 import { CongesService } from 'src/app/Services/Conges/conges.service';
 import { FerieService } from 'src/app/Services/Ferie/ferie.service';
 import * as XLSX from 'xlsx';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-planning-conges',
@@ -25,11 +26,39 @@ export class PlanningCongesComponent implements OnInit {
   public jourSub: Subscription;
   public jours: jourInterface[]; 
 
+  public options: any = {
+    chart: {
+      type: 'column',
+      height: 700
+    },
+    title: {
+      text: 'Jours de congé par mois et par départements'
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      categories: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', "Aout", "Semptembre", "Novembre", "Decembre"],
+      tickmarkPlacement: 'on',
+      title: {
+          enabled: false
+      }
+  },
+    series: [{
+      name: 'Production',
+      data: [502, 635, 809, 947, 1402, 3634, 5268]
+  }, {
+      name: 'Expédition',
+      data: [163, 203, 276, 408, 547, 729, 628]
+  }]
+  }
+
 
   constructor(private congesService : CongesService,
               private ferieService : FerieService) { }
 
   ngOnInit(): void {
+    
     this.jourSub = this.ferieService.allJours$.subscribe(
       (jours) => {
         this.jours = jours;
@@ -92,6 +121,8 @@ export class PlanningCongesComponent implements OnInit {
     )
     this.congesService.getConges();
     
+    Highcharts.chart('graph', this.options);
+  
   }
 
   exportexcel(): void 

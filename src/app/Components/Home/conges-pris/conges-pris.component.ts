@@ -67,7 +67,7 @@ export class CongesPrisComponent implements OnInit {
             } else if(conges[i].statut === 'VALIDEE'){
               this.color = "#2099D6"
             } else {
-              this.color = "#B97300"
+              this.color = "#B60021"
             }
             this.conges = conges[i]
             const even = {
@@ -87,7 +87,7 @@ export class CongesPrisComponent implements OnInit {
             headerToolbar: {
               left: 'prev,next today',
               center: 'title',
-              right: 'dayGridMonth,dayGridDay'
+              right: 'dayGridMonth,dayGridWeek,dayGridDay'
             },
             events: this.Events
           };
