@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { addCongesInterface } from 'src/app/Models/conges';
 import { CongesService } from 'src/app/Services/Conges/conges.service';
@@ -17,14 +18,22 @@ export class ModifyCongesComponent implements OnInit {
   public msg : string;
   public modifyCongeForm : FormGroup;
   public singleConge;
+  private userId = JSON.parse(sessionStorage.getItem('user')).id
+  public select
 
   constructor(private congesService : CongesService,
-              private formBuilder : FormBuilder) { }
+              private formBuilder : FormBuilder,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.congesSub = this.congesService.allConges$.subscribe(
       (conges) => {
-        this.conges = conges;
+        
+        this.conges =  conges.filter(conges => conges.collaborateur.id === this.userId && conges.statut === "INITIALE")
+        for(let i = 0; i < this.conges.length; i++){
+          this.conges[i].dateDebut = new DatePipe('en').transform(this.conges[i].dateDebut, 'dd/MM/yyyy')
+          this.conges[i].dateFin = new DatePipe('en').transform(this.conges[i].dateFin, 'dd/MM/yyyy')
+        }
         console.log(conges);
         
       },
@@ -77,9 +86,10 @@ export class ModifyCongesComponent implements OnInit {
     this.congesService.modifyConge(id , conge).subscribe(
       result => {
 
-        this.msg = "modification de congé bien pris en compte"
+        this.msg = "Modification de congé bien pris en compte"
         setTimeout(() => {
            this.msg = ""
+           this.router.navigate(["/congespris"])
         }, 2000);
       },
       error => {
@@ -89,6 +99,12 @@ export class ModifyCongesComponent implements OnInit {
        }, 2000);
       }
     )
+  }
+
+  selectConge(conge){
+    this.select = conge
+    console.log(this.select);
+    
   }
 
 }

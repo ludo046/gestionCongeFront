@@ -30,10 +30,9 @@
             <mat-form-field appearance="fill">
               <mat-label>Type de congés</mat-label>
               <mat-select required class="form-control" formControlName="type">
-                <mat-option 
-               value="CONGE_PAYE">
-                  congés payé
-                </mat-option>
+                <mat-option value="CONGE_PAYE">Congés payé</mat-option>
+                <mat-option value="CONGE_SANS_SOLDE">Congés sans solde</mat-option>
+                <mat-option value="RTT_SALARIE">RTT</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -43,6 +42,7 @@
               <textarea matInput class="form-control" formControlName="motif"></textarea>
             </mat-form-field>
           </div>
+          <p>{{msg}}</p>
       </form>
       <div class="modalFooter">
           <button mat-raised-button color="primary" (click)="addConges()">Envoyer</button>

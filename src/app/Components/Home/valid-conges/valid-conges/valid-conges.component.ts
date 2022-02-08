@@ -55,9 +55,16 @@ export class ValidCongesComponent implements OnInit {
     this.congesService.modifyConge(id, validate).subscribe(
       (valid) => {
         this.congesService.getConges()
+        this.msg = "Congé validé"
+        setTimeout(() => {
+          this.msg = ""
+        }, 2000);
       },
       err => {
-        this.msg = err
+        this.msg = err.message
+        setTimeout(() => {
+          this.msg = ""
+        }, 2000);
       }
     )
   }
@@ -80,9 +87,16 @@ export class ValidCongesComponent implements OnInit {
     this.congesService.modifyConge(id, validate).subscribe(
       (valid) => {
         this.congesService.getConges()
+        this.msg = "Congé rejeté"
+        setTimeout(() => {
+          this.msg = ""
+        }, 2000);
       },
       err => {
-        this.msg = err
+        this.msg = err.message
+        setTimeout(() => {
+          this.msg = ""
+        }, 2000);
       }
     )
   }

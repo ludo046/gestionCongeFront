@@ -42,6 +42,6 @@ export class CongesService {
   }
 
   deleteConge(id: number){
-    return this.httpClient.delete(`${this.baseUrl}demande_absence/`+id)
+    return this.httpClient.delete(`${this.baseUrl}demande_absence/`+id, {responseType: 'text'})
   }
 }

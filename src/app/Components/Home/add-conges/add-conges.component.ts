@@ -2,6 +2,7 @@ import { Component, OnInit, Pipe } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CongesService } from 'src/app/Services/Conges/conges.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-conges',
@@ -15,6 +16,7 @@ export class AddCongesComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder,
               private congesService : CongesService,
+              private router : Router
               ) { }
 
   ngOnInit(): void {
@@ -49,6 +51,7 @@ export class AddCongesComponent implements OnInit {
         this.msg = "demande de congé bien pris en compte"
         setTimeout(() => {
            this.msg = ""
+           this.router.navigate(['/congespris'])
         }, 2000);
       },
       error => {

@@ -13,10 +13,9 @@ export class DeleteCongeComponent implements OnInit {
   public conges = [];
   public msg: string;
   private userId = JSON.parse(sessionStorage.getItem('user')).id;
-  public deleteCongeForm : FormGroup;
 
   constructor(private congesService : CongesService,
-              private formBuilder : FormBuilder) { }
+              ) { }
 
   ngOnInit(): void {
     this.congesSub = this.congesService.allConges$.subscribe(
@@ -36,36 +35,22 @@ export class DeleteCongeComponent implements OnInit {
     }
     )
     this.congesService.getConges();
-       
-
-    this.deleteCongeForm = this.formBuilder.group({
-      id : this.formBuilder.control('', Validators.required)
-    })
   }
 
-  deleteConge(){
-    const id = this.deleteCongeForm.get("id").value
-
-    console.log(id);
-    
+  deleteConge(id){
     this.congesService.deleteConge(id).subscribe(
-      result => {
-        if(result){
-          this.msg = "employé bien supprimé";
-          console.log(this.msg);
-          
-          setTimeout(() => {
-            this.msg = ""
-         }, 100000);
-        }
-      },
-      error => {
-        this.msg = JSON.stringify(error.message)
-        console.log(this.msg);
-        
+      () => {
+        this.msg = "Demande de congés supprimé"
+        window.location.reload()
         setTimeout(() => {
           this.msg = ""
-       }, 2000);
+        }, 2000);
+      },
+      err => {
+        this.msg = "Une erreur c'est produite"
+        setTimeout(() => {
+          this.msg = ""
+        }, 5000);
       }
     )
   }

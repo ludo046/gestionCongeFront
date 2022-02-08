@@ -7,16 +7,16 @@
           <mat-form-field appearance="fill" class="input" >
             <mat-label  >Congé à modifier</mat-label>
             <mat-select required class="form-control" formControlName="id">
-              <mat-option  *ngFor="let conge of conges" [value]="conge.id" (click)="getSingleConge()">
+              <mat-option  *ngFor="let conge of conges" [value]="conge.id" (click)="selectConge(conge)">
                 {{conge.dateDebut}} - {{conge.dateFin}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <div *ngIf="singleConge">
+          <div *ngIf="select">
             <div class="input flex">
               <mat-form-field appearance="fill" class="date">
                 <mat-label>Date de debut des congés</mat-label>
-                <input matInput [matDatepicker]="datepicker" required class="form-control" formControlName="dateDebut">
+                <input matInput [matDatepicker]="datepicker" required class="form-control" formControlName="dateDebut" >
                 <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
                   <mat-datepicker-actions>
@@ -39,8 +39,10 @@
             <div class="input">
               <mat-form-field appearance="fill">
                 <mat-label>Type de congés</mat-label>
-                <mat-select required class="form-control" formControlName="typeAbsence">
-                  <mat-option value="RTT_SALARIE">rtt</mat-option>
+                <mat-select required class="form-control" formControlName="typeAbsence" [(ngModel)]="select.typeAbsence">
+                  <mat-option value="CONGE_PAYE">Congés payé</mat-option>
+                  <mat-option value="CONGE_SANS_SOLDE">Congés sans solde</mat-option>
+                  <mat-option value="RTT_SALARIE">RTT</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -48,10 +50,11 @@
             <div class="input">
               <mat-form-field appearance="fill">
                 <mat-label>Motif de la demande de congés</mat-label>
-                <textarea matInput class="form-control" formControlName="motifAbsence"></textarea>
+                <textarea matInput class="form-control" formControlName="motifAbsence" [(ngModel)]="select.motifAbsence"></textarea>
               </mat-form-field>
             </div>
           </div>
+          <p>{{msg}}</p>
         </form>
         <div class="modalFooter">
             <button mat-raised-button color="primary" (click)="modifyConge()">Envoyer</button>
