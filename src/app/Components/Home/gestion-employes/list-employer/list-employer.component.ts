@@ -28,11 +28,9 @@ export class ListEmployerComponent implements OnInit {
     this.employeSub = this.employeService.allEmployes$.subscribe(
       (employe) => {
         this.employes = employe;
-        console.log(employe);
-        
       },
       error => {
-        this.msg = error;
+        this.msg = error.message;
       }
     )
     this.employeService.getAllEmployes();

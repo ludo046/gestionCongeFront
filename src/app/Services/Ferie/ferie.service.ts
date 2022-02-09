@@ -35,7 +35,7 @@ export class FerieService {
   }
 
   deleteJour(id: number){
-    return this.httpClient.delete(`${this.baseUrl}jour_ferie/`+id)
+    return this.httpClient.delete(`${this.baseUrl}jour_ferie/`+id, {responseType: 'text'})
   }
 
 }

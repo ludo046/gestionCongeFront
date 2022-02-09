@@ -8,47 +8,48 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Employe à modifier</mat-label>
                     <mat-select class="form-control" formControlName="id" required>
-                      <mat-option *ngFor="let employe of employes" [value]="employe.id" >
+                      <mat-option *ngFor="let employe of employes" [value]="employe.id" (click)="selectEmploye(employe)">
                           {{employe.nom}} {{employe.prenom}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
             </div>
-            <div class="input flex">
+            <div class="input flex" *ngIf="select">
                 <mat-form-field class="date" appearance="fill">
                     <mat-label>Nom</mat-label>
-                    <input matInput placeholder="Ex. durant" class="form-control" formControlName="nom" required>
+                    <input matInput placeholder="Ex. durant" [(ngModel)]="select.nom" class="form-control" formControlName="nom" required>
                   </mat-form-field>
 
                   <mat-form-field class="date" appearance="fill">
                     <mat-label>Prénom</mat-label>
-                    <input matInput placeholder="Ex. paul" class="form-control" formControlName="prenom" required>
+                    <input matInput placeholder="Ex. paul" [(ngModel)]="select.prenom" class="form-control" formControlName="prenom" required>
                   </mat-form-field>
             </div>
   
-            <div class="input">
+            <div class="input" *ngIf="select">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Identifiant</mat-label>
-                    <input matInput placeholder="Ex. paul.d" class="form-control" formControlName="identifiant" required>
+                    <input matInput placeholder="Ex. paul.d" [(ngModel)]="select.identifiant" class="form-control" formControlName="identifiant" required>
                   </mat-form-field>
             </div>
   
-            <div class="input">
+            <div class="input" *ngIf="select">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Mot de passe </mat-label>
-                    <input matInput class="form-control" formControlName="motDePasse" required>
+                    <input matInput class="form-control" [(ngModel)]="select.motDePasse" formControlName="motDePasse" required>
                   </mat-form-field>
             </div>
-            <div class="input">
+            <div class="input" *ngIf="select">
                 <mat-form-field appearance="fill">
                     <mat-label>Manager</mat-label>
                     <mat-select class="form-control" formControlName="manager">
-                      <mat-option *ngFor="let employe of employes" [value]="employe" >
+                      <mat-option *ngFor="let employe of employes" [value]="employe" (click)="selectManager(employe)">
                           {{employe.nom}} {{employe.prenom}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
             </div>
+            <p>{{msg}}</p>
         </form>
         <div class="modalFooter">
             <button mat-raised-button color="primary" (click)="addEmploye()">Envoyer</button>

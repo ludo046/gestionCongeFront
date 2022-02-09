@@ -20,9 +20,9 @@ export class PlanningCongesComponent implements OnInit {
   public conges: addCongesInterface[];
   public msg: string;
   public Events =  [];
-  calendarOptions: CalendarOptions;
-  color ;
-  fileName= 'ExcelSheet.xlsx';
+  public calendarOptions: CalendarOptions;
+  public color ;
+  private fileName= 'planning_conges.xlsx';
   public jourSub: Subscription;
   public jours: jourInterface[]; 
 
@@ -62,7 +62,6 @@ export class PlanningCongesComponent implements OnInit {
     this.jourSub = this.ferieService.allJours$.subscribe(
       (jours) => {
         this.jours = jours;
-        console.log(jours);
         for(let i = 0; i < jours.length; i++){
 
             const even = {
@@ -76,7 +75,7 @@ export class PlanningCongesComponent implements OnInit {
         }
       },
       error => {
-        this.msg = error;
+        this.msg = error.message;
       }
     )
     this.ferieService.getJours(); 
@@ -102,7 +101,6 @@ export class PlanningCongesComponent implements OnInit {
             }
             this.Events.push(even)
         }
-        console.log(conges);
         
           this.calendarOptions = {
             initialView: 'dayGridMonth',
@@ -116,7 +114,7 @@ export class PlanningCongesComponent implements OnInit {
           };
       },
       error => {
-        this.msg = error;
+        this.msg = error.message;
       }
     )
     this.congesService.getConges();
@@ -127,17 +125,13 @@ export class PlanningCongesComponent implements OnInit {
 
   exportexcel(): void 
   {
-     /* table id is passed over here */   
      let element = document.getElementById('calendar'); 
      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
-     /* generate workbook and add the worksheet */
      const wb: XLSX.WorkBook = XLSX.utils.book_new();
      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-     /* save to file */
      XLSX.writeFile(wb, this.fileName);
-    
   }
 
 }

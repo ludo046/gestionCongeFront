@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FerieService } from 'src/app/Services/Ferie/ferie.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class AddJourComponent implements OnInit {
   public msg : string;
 
   constructor(private formBuilder : FormBuilder,
-              private ferieService : FerieService) { }
+              private ferieService : FerieService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.addJourForm = this.formBuilder.group({
@@ -34,11 +36,11 @@ export class AddJourComponent implements OnInit {
  
     
     this.ferieService.addJour(addJour).subscribe(
-      result => {
-
+      () => {
         this.msg = "ajout de jour ferié bien pris en compte"
         setTimeout(() => {
            this.msg = ""
+           this.router.navigate(["/planningconges"])
         }, 2000);
       },
       error => {

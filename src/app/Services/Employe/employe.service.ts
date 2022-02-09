@@ -38,6 +38,6 @@ export class EmployeService {
   }
 
   deleteEmploye(id: number){
-    return this.httpClient.delete(`${this.baseUrl}collaborateur/`+id)
+    return this.httpClient.delete(`${this.baseUrl}collaborateur/`+id, {responseType: 'text'})
   }
 }

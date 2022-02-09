@@ -4,10 +4,11 @@ $terciary-color : #317474;
 $font-color : white;
 
 .container{
+    position: relative;
     .modal{
         width: 80%;
         background-color: $primary-color;
-        margin: 10% auto 0;
+        margin: 5% auto 0;
         border-radius: 10px;
         position: relative;
         border: 1px solid grey;
@@ -19,6 +20,8 @@ $font-color : white;
             text-align: center;
             color: $font-color;
             border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: center;
             h1{
                 margin: 0;
                 padding: 15px 0;
@@ -28,9 +31,9 @@ $font-color : white;
             width: 70%;
             margin : 0 auto;
             padding: 40px 0;
-            text-align: center;
             p{
-                color: $font-color;
+              text-align: center;
+              color: $font-color;
             }
             .input{
                 display: flex;
@@ -76,6 +79,10 @@ $font-color : white;
             justify-content: center;
             padding: 15px 0;
             border-radius:0 0 10px 10px;
+            text-align: center;
+            p{
+                color: $font-color;
+            }
             button{
                 padding: 10px;
                 border-radius: 10px;
@@ -87,3 +94,212 @@ $font-color : white;
     }
 
 }
+
+
+.btn {
+    position: relative;
+    height: 80px;
+    width: 80px;
+    padding: 0;
+    border: none;
+    background-color: $secondary-color;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 2px rgba(85, 85, 85, 0.4);
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    top: 50px;
+    transition: 600ms;
+
+    p{
+        margin-top: 70px;
+        color: $font-color;
+        z-index: 3;
+    }
+
+    .absolute-center {
+      position: absolute;
+    }
+  
+    .circle-1 {
+      transform: scale(0);
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-color: rgba(20, 87, 107, 0.9);
+  
+      animation: anim1 2.1s cubic-bezier(0.13, 0.86, 0.86, 0.08) 0s infinite;
+    }
+  
+    .circle-2 {
+      transform: scale(0);
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-color: rgba(25, 118, 146, 0.85);
+  
+      animation: anim2 2.1s cubic-bezier(0.13, 0.86, 0.86, 0.08) 0.7s infinite;
+    }
+  
+    .circle-3 {
+      transform: scale(0);
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-color: rgba(37, 165, 204, 0.8);
+  
+      animation: anim3 2.1s cubic-bezier(0.13, 0.86, 0.86, 0.08) 1.4s infinite;
+    }
+  }
+  
+  .btn:hover {
+    background-color: rgb(255, 75, 75);
+    box-shadow: 0px 0px 20px 5px rgba(85, 85, 85, 0.8);
+    animation: waveAnim 1000ms linear 0s 1, moveAnim 500ms linear 0s 1;
+  }
+  
+  .btn:hover {
+    box-shadow: 0px 0px 20px 5px rgba(85, 85, 85, 0.8);
+    transition: 600ms;
+  }
+  
+  @keyframes anim1 {
+    0% {
+      transform: rotate(0deg) scale(0);
+    }
+    50% {
+      transform: rotate(45deg) scale(1.2);
+    }
+    100% {
+      transform: rotate(90deg) scale(0);
+    }
+  }
+  
+  @keyframes anim2 {
+    0% {
+      transform: rotate(0deg) scale(0);
+    }
+    50% {
+      transform: rotate(45deg) scale(0.9);
+    }
+    100% {
+      transform: rotate(90deg) scale(0);
+    }
+  }
+  
+  @keyframes anim3 {
+    0% {
+      transform: rotate(0deg) scale(0);
+    }
+    50% {
+      transform: rotate(45deg) scale(0.7);
+    }
+    100% {
+      transform: rotate(90deg) scale(0);
+    }
+  }
+  
+  @keyframes waveAnim {
+    100% {
+      box-shadow: 0px 0px 20px 5px rgba(85, 85, 85, 0.8);
+    }
+    50% {
+      box-shadow: 0px 0px 40px 5px rgba(255, 5, 5, 0.7);
+    }
+  }
+  
+  @keyframes moveAnim {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+    .try {
+    vertical-align: middle;
+  }
+  
+
+  $h-root: 180; // try changing this :) [0-360]
+
+  $c-primary-text: #EEE;
+  $c-secondary-text: #111;
+  
+    .try {
+    vertical-align: middle;
+  }
+  
+  .rejectbutton {
+    appearance: none;
+    border-radius: 50%;
+    border: 0;
+    background-color: $terciary-color;
+    color: $c-primary-text;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 900;
+    letter-spacing: .0816em;
+    position: relative;
+    text-transform: uppercase;
+    transition: background-color .25s ease-out, transform .5s ease-out;
+    &:hover {
+      background-color: #c15151;
+      color: $c-secondary-text;
+    }
+  }
+  .validbutton {
+    appearance: none;
+    border-radius: 50%;
+    border: 0;
+    background-color: $terciary-color;
+    color: $c-primary-text;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 900;
+    letter-spacing: .0816em;
+    position: relative;
+    text-transform: uppercase;
+    transition: background-color .25s ease-out, transform .5s ease-out;
+    &:hover {
+      background-color: #429736;
+      color: $c-secondary-text;
+    }
+  }
+  
+  
+  .try {
+    font-size: .618rem;
+    height: 2rem;
+    width: 2rem;
+    margin: 0 .5rem;
+  
+    &:hover {
+      transform: scale(1.3333);
+      
+      .text {
+        display: inline-block;
+        transform: scale(.75);
+      }
+      ~ .buy {
+        transform: scale(.75);
+      }
+    }
+    .text {
+      transition: transform .5s ease-out;
+      transform: scale(1);
+    }
+
+    fa-icon{
+        font-size: 1rem;
+
+    }
+  }

@@ -101,4 +101,22 @@ export class ValidCongesComponent implements OnInit {
     )
   }
 
+  batch(){
+    this.congesService.batch().subscribe(
+      () => {
+        this.congesService.getConges()
+        this.msg = "Chargement en cours"
+        setTimeout(() => {
+          this.msg = ""
+        }, 2000);
+      },
+      err => {
+        this.msg = "Une erreur est survenu"
+        setTimeout(() => {
+          this.msg = ""
+        }, 2000);
+      }
+    )
+  }
+
 }

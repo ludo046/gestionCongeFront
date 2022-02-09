@@ -1,11 +1,20 @@
 <div class="container">
+  <div class="d-flex-center" (click)="batch()">
+    <button class="btn d-flex-center">
+         <div class="circle-1 absolute-center"></div>
+        <div class="circle-2 absolute-center"></div>
+        <div class="circle-3 absolute-center"></div>
+        <p>Batch</p>
+    </button>
+</div>
     <div class="modal">
         <div class="modalHeader">
             <h1>Valider Demande de congés</h1>
+
         </div>
-        <form>
-          <p>{{msg}}</p>
-            <table mat-table [dataSource]="conges" class="mat-elevation-z8">
+        <form >
+            <p *ngIf="conges.length === 0">Aucune demande de congés en cours liste mise à jours automatiquement a 23h00 ou lancer un batch manuellement à l'aide du bouton ci-dessus</p>
+            <table mat-table [dataSource]="conges" class="mat-elevation-z8" *ngIf="conges.length > 0">
 
                 <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
@@ -46,9 +55,14 @@
 
                   <ng-container matColumnDef="button">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
-                    <td mat-cell *matCellDef="let conges"> 
-                        <fa-icon class="truc" [icon]="valid" (click)="validConge(conges)"></fa-icon> 
-                        <fa-icon class="truc" [icon]="notValid" (click)="rejectConge(conges)"></fa-icon> 
+                    <td mat-cell *matCellDef="let conges">
+                      <button class="try validbutton">
+                        <span class="text"><fa-icon class="truc" [icon]="valid" (click)="validConge(conges)"></fa-icon> </span>
+                      </button> 
+                      <button class="try rejectbutton">
+                        <span class="text"><fa-icon class="truc" [icon]="notValid" (click)="rejectConge(conges)"></fa-icon> </span>
+                      </button> 
+                        
                     </td>
                   </ng-container>
               
@@ -57,7 +71,8 @@
               </table>
         </form>
         <div class="modalFooter">
-            <button mat-raised-button color="primary">Envoyer</button>
+            <p>{{msg}}</p>
         </div>
     </div>
+
   </div>

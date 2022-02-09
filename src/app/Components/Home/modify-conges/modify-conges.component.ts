@@ -54,13 +54,10 @@ export class ModifyCongesComponent implements OnInit {
 
   getSingleConge(){
     const id = this.modifyCongeForm.get("id").value
-    console.log(id);
 
     this.congesService.getSingleConge(id).subscribe(
       result => {
-        
         this.singleConge = result
-        console.log(this.singleConge.dateDebut);
       }
     )
   }
@@ -84,8 +81,7 @@ export class ModifyCongesComponent implements OnInit {
     
 
     this.congesService.modifyConge(id , conge).subscribe(
-      result => {
-
+      () => {
         this.msg = "Modification de congé bien pris en compte"
         setTimeout(() => {
            this.msg = ""

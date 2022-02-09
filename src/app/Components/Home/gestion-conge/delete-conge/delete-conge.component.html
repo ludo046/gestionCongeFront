@@ -4,7 +4,8 @@
             <h1>Supprimer une demande de congé</h1>
         </div>
         <form>
-            <div class="input">
+            <p *ngIf="conges.length === 0">Vous n'avez actuellement aucune demande de congés en cours au statut Initial. <br> Veuillez voir directement avec la direction en cas d'erreur.</p>
+            <div class="input" *ngIf="conges.length > 0">
                 <mat-form-field appearance="fill">
                     <mat-label>Conge à supprimer</mat-label>
                     <mat-select required>
@@ -17,7 +18,7 @@
             <p *ngIf="msg">{{msg}}</p>
         </form>
         <div class="modalFooter">
-            <button mat-raised-button color="primary" >Envoyer</button>
+            <button mat-raised-button color="primary" *ngIf="conges.length > 0">Envoyer</button>
         </div>
     </div>
   </div>

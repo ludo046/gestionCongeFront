@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { updateJourInterface } from 'src/app/Models/jour';
 import { FerieService } from 'src/app/Services/Ferie/ferie.service';
@@ -12,7 +13,8 @@ import { FerieService } from 'src/app/Services/Ferie/ferie.service';
 export class DeleteJourComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder,
-              private ferieService : FerieService) { }
+              private ferieService : FerieService,
+              private router : Router) { }
 
   public deletejourForm : FormGroup;
   public msg : string;
@@ -24,11 +26,9 @@ export class DeleteJourComponent implements OnInit {
     this.jourSub = this.ferieService.allJours$.subscribe(
       (jours) => {
         this.jours = jours;
-        console.log(jours);
-        
       },
       error => {
-        this.msg = error;
+        this.msg = error.message;
       }
     )
     this.ferieService.getJours();
@@ -40,25 +40,20 @@ export class DeleteJourComponent implements OnInit {
 
   deleteJour(){
     const id = this.deletejourForm.get("id").value
-
-    console.log(id);
     
     this.ferieService.deleteJour(id).subscribe(
       result => {
         if(result){
-          this.msg = "employé bien supprimé";
+          this.msg = "Jour férié bien supprimé";
           this.ferieService.getJours();
-          console.log(this.msg);
-          
           setTimeout(() => {
+            this.router.navigate(["/planningconges"])
             this.msg = ""
-         }, 100000);
+         }, 2000);
         }
       },
       error => {
-        this.msg = JSON.stringify(error.message)
-        console.log(this.msg);
-        
+        this.msg = error.message
         setTimeout(() => {
           this.msg = ""
        }, 2000);

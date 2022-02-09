@@ -14,9 +14,9 @@
                     </mat-select>
                   </mat-form-field>
             </div>
+            <p *ngIf="msg">{{msg}}</p>
         </form>
         <div class="modalFooter">
-            <p *ngIf="msg">{{msg}}</p>
             <button mat-raised-button color="primary" (click)="deleteJour()">Envoyer</button>
         </div>
     </div>

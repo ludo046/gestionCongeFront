@@ -32,13 +32,14 @@
             <div class="input">
                 <mat-form-field appearance="fill">
                     <mat-label>Manager</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let employe of employes" [value]="employe">
+                    <mat-select class="form-control" formControlName="manager">
+                      <mat-option *ngFor="let employe of employes" (click)="selectManager(employe)">
                           {{employe.nom}} {{employe.prenom}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
             </div>
+            <p>{{msg}}</p>
         </form>
         <div class="modalFooter">
             <button mat-raised-button color="primary" (click)="addEmploye()">Envoyer</button>

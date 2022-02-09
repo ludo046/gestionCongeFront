@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { addEmployeModel } from 'src/app/Models/employe';
 import { EmployeService } from 'src/app/Services/Employe/employe.service';
@@ -15,17 +16,17 @@ public addEmployeForm : FormGroup;
 public msg : string;
 public employeSub : Subscription;
 public employes : [];
+public select;
 
 
   constructor(private formBuilder : FormBuilder,
-              private employeService : EmployeService) { }
+              private employeService : EmployeService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.employeSub = this.employeService.allEmployes$.subscribe(
       (employe) => {
-        this.employes = employe;
-        console.log(employe);
-        
+        this.employes = employe;     
       },
       error => {
         this.msg = error;
@@ -33,16 +34,18 @@ public employes : [];
     )
     this.employeService.getAllEmployes();
    
-    
     this.addEmployeForm = this.formBuilder.group({
       nom : this.formBuilder.control('', Validators.required),
       prenom : this.formBuilder.control('', Validators.required),
       identifiant : this.formBuilder.control('', Validators.required),
       motDePasse : this.formBuilder.control('', Validators.required),
-      //manager : this.formBuilder.control('')
+      manager : this.formBuilder.control('')
     })
 
 
+  }
+  selectManager(manager){
+    this.select = manager
   }
 
   addEmploye(){
@@ -51,16 +54,15 @@ public employes : [];
       prenom : this.addEmployeForm.get("prenom").value,
       identifiant : this.addEmployeForm.get("identifiant").value,
       motDePasse : this.addEmployeForm.get("motDePasse").value,
-      //manager : this.addEmployeForm.get("manager").value
+      role : 'SALARIE',
+      manager : this.select
     }
-    console.log(newEmploye);
-    
-
     this.employeService.addEmploye(newEmploye).subscribe(
-      result => {
+      () => {
         this.msg = "employé bien créé"
         setTimeout(() => {
            this.msg = ""
+           this.router.navigate(["/listemploye"])
         }, 2000);
       },
       error => {

@@ -1,12 +1,12 @@
 <div class="container">
     <div class="modal">
         <div class="modalHeader">
-            <h1>Poser un congé</h1>
+            <h1>Ajouter un jour férié</h1>
         </div>
         <form [formGroup]="addJourForm">
             <div class="input flex">
               <mat-form-field appearance="fill" class="date">
-                <mat-label>Date de debut des congés</mat-label>
+                <mat-label>Date de debut</mat-label>
                 <input matInput [matDatepicker]="datepicker " required class="form-control" formControlName="dateDebut">
                 <mat-datepicker-toggle matSuffix [for]="datepicker "></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
@@ -17,7 +17,7 @@
                 </mat-datepicker>
               </mat-form-field>
               <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Date de fin des congés</mat-label>
+                <mat-label>Date de fin</mat-label>
                 <input matInput [matDatepicker]="picker" class="form-control" formControlName="dateFin">
                 <mat-datepicker-toggle matSuffix [for]="picker">
                   <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -25,10 +25,13 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
-            <mat-form-field class="example-full-width" appearance="fill">
+            <div class="input">
+              <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Libellé</mat-label>
                 <input matInput placeholder="Ex. paques" class="form-control" formControlName="libelle" >
               </mat-form-field>
+            </div>
+            <p>{{msg}}</p>
         </form>
         <div class="modalFooter">
             <button mat-raised-button color="primary" (click)="addJour()">Envoyer</button>

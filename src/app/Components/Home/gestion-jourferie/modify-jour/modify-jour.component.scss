@@ -28,6 +28,10 @@ $font-color : white;
             width: 70%;
             margin : 0 auto;
             padding: 40px 0;
+            text-align: center;
+            p{
+                color: $font-color;
+            }
             .input{
                 display: flex;
                 flex-direction: column;

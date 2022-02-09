@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EmployeService } from 'src/app/Services/Employe/employe.service';
 
@@ -14,19 +15,20 @@ export class ModifyEmployerComponent implements OnInit {
   public msg : string;
   public employeSub : Subscription;
   public employes : [];
+  public select;
+  public manager;
 
   constructor(private formBuilder : FormBuilder,
-              private employeService : EmployeService) { }
+              private employeService : EmployeService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.employeSub = this.employeService.allEmployes$.subscribe(
       (employe) => {
         this.employes = employe;
-        console.log(employe);
-        
       },
       error => {
-        this.msg = error;
+        this.msg = error.message;
       }
     )
     this.employeService.getAllEmployes();
@@ -40,6 +42,13 @@ export class ModifyEmployerComponent implements OnInit {
       manager : this.formBuilder.control('', Validators.required)
     })
   }
+  selectEmploye(employe){
+    this.select = employe
+  }
+
+  selectManager(manager){
+    this.manager = manager
+  }
 
   addEmploye(){
     const newEmploye = {
@@ -48,16 +57,14 @@ export class ModifyEmployerComponent implements OnInit {
       prenom : this.addEmployeForm.get("prenom").value,
       identifiant : this.addEmployeForm.get("identifiant").value,
       motDePasse : this.addEmployeForm.get("motDePasse").value,
-      manager : JSON.parse(this.addEmployeForm.get("manager").value)
+      manager : this.manager
     }
-    console.log(newEmploye);
-    
-
     this.employeService.updateEmploye(newEmploye).subscribe(
-      result => {
-        this.msg = "employé bien créé"
+      () => {
+        this.msg = "modification bien prise en compte"
         setTimeout(() => {
            this.msg = ""
+           this.router.navigate(["/listemploye"])
         }, 2000);
       },
       error => {

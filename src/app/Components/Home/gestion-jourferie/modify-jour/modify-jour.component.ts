@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { updateJourInterface } from 'src/app/Models/jour';
 import { FerieService } from 'src/app/Services/Ferie/ferie.service';
@@ -18,21 +19,19 @@ export class ModifyJourComponent implements OnInit {
   public jours: updateJourInterface[];
 
   constructor(private formBuilder : FormBuilder,
-              private ferieService : FerieService) { }
+              private ferieService : FerieService,
+              private router : Router) { }
 
   ngOnInit(): void {
     this.jourSub = this.ferieService.allJours$.subscribe(
       (jours) => {
         this.jours = jours;
-        console.log(jours);
-        
       },
       error => {
         this.msg = error;
       }
     )
     this.ferieService.getJours();
-
 
     this.modifyjour = this.formBuilder.group({
       id : this.formBuilder.control("", Validators.required), 
@@ -49,15 +48,12 @@ export class ModifyJourComponent implements OnInit {
       dateFin : new DatePipe('en').transform(this.modifyjour.get("dateFin").value, 'dd/MM/yyyy'),
       libelle : this.modifyjour.get("libelle").value
     }
-    console.log(jour);
-    
-
     this.ferieService.updateJour(jour).subscribe(
-      result => {
-
-        this.msg = "modification de congé bien pris en compte"
+      () => {
+        this.msg = "modification du jour ferié pris en compte"
         setTimeout(() => {
            this.msg = ""
+           this.router.navigate(["/planningconges"])
         }, 2000);
       },
       error => {

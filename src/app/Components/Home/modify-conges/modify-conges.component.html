@@ -4,6 +4,8 @@
             <h1>Modifier un congé</h1>
         </div>
         <form [formGroup]="modifyCongeForm">
+          <p *ngIf="conges.length === 0">Vous n'avez actuellement aucune demande de congés en cours au statut Initial. <br> Veuillez voir directement avec la direction en cas d'erreur.</p>
+          <div *ngIf="conges.length > 0">
           <mat-form-field appearance="fill" class="input" >
             <mat-label  >Congé à modifier</mat-label>
             <mat-select required class="form-control" formControlName="id">
@@ -55,9 +57,10 @@
             </div>
           </div>
           <p>{{msg}}</p>
+        </div>
         </form>
         <div class="modalFooter">
-            <button mat-raised-button color="primary" (click)="modifyConge()">Envoyer</button>
+            <button mat-raised-button color="primary" (click)="modifyConge()" *ngIf="conges.length > 0">Envoyer</button>
         </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EmployeService } from 'src/app/Services/Employe/employe.service';
 
@@ -15,17 +16,16 @@ export class DeleteEmployerComponent implements OnInit {
   public employes : [];
 
   constructor(private formBuilder : FormBuilder,
-    private employeService : EmployeService) { }
+    private employeService : EmployeService,
+    private router : Router) { }
 
   ngOnInit(): void {
     this.employeSub = this.employeService.allEmployes$.subscribe(
       (employe) => {
         this.employes = employe;
-        console.log(employe);
-        
       },
       error => {
-        this.msg = error;
+        this.msg = error.message;
       }
     )
     this.employeService.getAllEmployes();
@@ -36,26 +36,20 @@ export class DeleteEmployerComponent implements OnInit {
   }
 
   deleteEmploye(){
-    const id = this.deleteEmployeForm.get("id").value
+    const id = this.deleteEmployeForm.get("id").value;
 
-    console.log(id);
-    
     this.employeService.deleteEmploye(id).subscribe(
       result => {
         if(result){
-          this.msg = "employé bien supprimé";
-          this.employeService.getAllEmployes();
-          console.log(this.msg);
-          
+          this.msg = "employé bien supprimé"; 
           setTimeout(() => {
             this.msg = ""
-         }, 100000);
+            this.router.navigate(["/listemploye"])
+         }, 2000);
         }
       },
       error => {
         this.msg = JSON.stringify(error.message)
-        console.log(this.msg);
-        
         setTimeout(() => {
           this.msg = ""
        }, 2000);
